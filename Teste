@@ -1,0 +1,147 @@
+> library(readxl)
+Warning message:
+package ‘readxl’ was built under R version 4.0.5 
+> bd_surveyquaest <- read_excel("C:/Users/bruna/Downloads/bd_surveyquaest.xlsx")
+> View(bd_surveyquaest)
+> ############# % de votos de todos os candidatos ###################
+> votos <-table(voto = bd_surveyquaest$voto1, sexo = bd_surveyquaest$sexo)
+> addmargins(votos)
+                     sexo
+voto                  Feminino
+  Candidato 1               11
+  Candidato 10              14
+  Candidato 11               1
+  Candidato 12               3
+  Candidato 13               2
+  Candidato 14               6
+  Candidato 2              295
+  Candidato 3                9
+  Candidato 4                4
+  Candidato 5               14
+  Candidato 6                7
+  Candidato 7                3
+  Candidato 8               14
+  Candidato 9                7
+  Ninguém/Branco/Nulo       72
+  NS/NR                     83
+  Sum                      545
+                     sexo
+voto                  Masculino  Sum
+  Candidato 1                31   42
+  Candidato 10                6   20
+  Candidato 11                2    3
+  Candidato 12                3    6
+  Candidato 13                1    3
+  Candidato 14                0    6
+  Candidato 2               228  523
+  Candidato 3                 7   16
+  Candidato 4                 8   12
+  Candidato 5                11   25
+  Candidato 6                 3   10
+  Candidato 7                 4    7
+  Candidato 8                12   26
+  Candidato 9                12   19
+  Ninguém/Branco/Nulo        70  142
+  NS/NR                      57  140
+  Sum                       455 1000
+> freqrel <- prop.table(table(voto = bd_surveyquaest$voto1, sexo = bd_surveyquaest$sexo))
+> addmargins(freqrel)
+                     sexo
+voto                  Feminino
+  Candidato 1            0.011
+  Candidato 10           0.014
+  Candidato 11           0.001
+  Candidato 12           0.003
+  Candidato 13           0.002
+  Candidato 14           0.006
+  Candidato 2            0.295
+  Candidato 3            0.009
+  Candidato 4            0.004
+  Candidato 5            0.014
+  Candidato 6            0.007
+  Candidato 7            0.003
+  Candidato 8            0.014
+  Candidato 9            0.007
+  Ninguém/Branco/Nulo    0.072
+  NS/NR                  0.083
+  Sum                    0.545
+                     sexo
+voto                  Masculino   Sum
+  Candidato 1             0.031 0.042
+  Candidato 10            0.006 0.020
+  Candidato 11            0.002 0.003
+  Candidato 12            0.003 0.006
+  Candidato 13            0.001 0.003
+  Candidato 14            0.000 0.006
+  Candidato 2             0.228 0.523
+  Candidato 3             0.007 0.016
+  Candidato 4             0.008 0.012
+  Candidato 5             0.011 0.025
+  Candidato 6             0.003 0.010
+  Candidato 7             0.004 0.007
+  Candidato 8             0.012 0.026
+  Candidato 9             0.012 0.019
+  Ninguém/Branco/Nulo     0.070 0.142
+  NS/NR                   0.057 0.140
+  Sum                     0.455 1.000
+> candidatos <- c("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "c11", "c12", "c13", "c14","N/B/N","NS/NR")
+> > votos <- c(42,20,30,6,3,6,523,16,12,25,10,7,26,19,142,140)
+Erro: '>' inesperado in ">"
+> candidatos <- c("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "c11", "c12", "c13", "c14","N/B/N","NS/NR")
+> votos <- c(42,20,30,6,3,6,523,16,12,25,10,7,26,19,142,140)
+> barplot(votos, names.arg = candidatos)
+> freqrel <- prop.table(table(voto = bd_surveyquaest$voto1, sexo = bd_surveyquaest$sexo))
+> addmargins(freqrel)
+                     sexo
+voto                  Feminino Masculino   Sum
+  Candidato 1            0.011     0.031 0.042
+  Candidato 10           0.014     0.006 0.020
+  Candidato 11           0.001     0.002 0.003
+  Candidato 12           0.003     0.003 0.006
+  Candidato 13           0.002     0.001 0.003
+  Candidato 14           0.006     0.000 0.006
+  Candidato 2            0.295     0.228 0.523
+  Candidato 3            0.009     0.007 0.016
+  Candidato 4            0.004     0.008 0.012
+  Candidato 5            0.014     0.011 0.025
+  Candidato 6            0.007     0.003 0.010
+  Candidato 7            0.003     0.004 0.007
+  Candidato 8            0.014     0.012 0.026
+  Candidato 9            0.007     0.012 0.019
+  Ninguém/Branco/Nulo    0.072     0.070 0.142
+  NS/NR                  0.083     0.057 0.140
+  Sum                    0.545     0.455 1.000
+> 
+> 
+> 
+> ################### candidato de situação ou oposição? ##############
+> avalgov <- table(avalgov = bd_surveyquaest$aval_gov)
+> avalgov
+avalgov
+             Boa            NS/NR            Ótima          Péssima Regular negativa Regular positiva 
+             443               14              181               64               74              175 
+            Ruim 
+              49 
+> avalgov <- table(avalgov = bd_surveyquaest$aval_gov, sexo = bd_surveyquaest$sexo)
+> avalgov
+                  sexo
+avalgov            Feminino Masculino
+  Boa                   246       197
+  NS/NR                   9         5
+  Ótima                 118        63
+  Péssima                28        36
+  Regular negativa       29        45
+  Regular positiva       91        84
+  Ruim                   24        25
+> freqrel <- prop.table(table(avalgov = bd_surveyquaest$aval_gov, sexo = bd_surveyquaest$sexo))
+> addmargins(freqrel)
+                  sexo
+avalgov            Feminino Masculino   Sum
+  Boa                 0.246     0.197 0.443
+  NS/NR               0.009     0.005 0.014
+  Ótima               0.118     0.063 0.181
+  Péssima             0.028     0.036 0.064
+  Regular negativa    0.029     0.045 0.074
+  Regular positiva    0.091     0.084 0.175
+  Ruim                0.024     0.025 0.049
+  Sum                 0.545     0.455 1.000
